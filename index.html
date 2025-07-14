@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Migraine Questionnaire</title>
+    <style>
+      :root {
+        --font-base: 16px;
+        --radius: 0.75rem;
+        --gap: 1.25rem;
+        --accent: #0066ff;
+      }
+
+      /* Base (mobile-first) styles */
+      html {
+        font-size: var(--font-base);
+        box-sizing: border-box;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      body {
+        font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 1.5rem;
+        background: #f7f7f7;
+      }
+
+      form {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.075);
+      }
+
+      h1 {
+        font-size: 1.35rem;
+        margin: 0 0 1rem;
+        text-align: center;
+      }
+
+      fieldset {
+        border: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      legend {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      /* Radio / checkbox row */
+      .options {
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      /* Slider output */
+      .slider-output {
+        font-weight: 600;
+        margin-left: 0.5rem;
+      }
+
+      /* Submit button */
+      button[type="submit"] {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: var(--radius);
+        background: var(--accent);
+        color: #fff;
+        cursor: pointer;
+      }
+      button[type="submit"]:active {
+        transform: scale(0.98);
+      }
+
+      /* Tablet / desktop enhancements */
+      @media (min-width: 600px) {
+        body {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          padding-top: 3rem;
+        }
+        form {
+          max-width: 500px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h1>Daily Migraine Questionnaire</h1>
+
+      <!-- Q1 -->
+      <fieldset>
+        <legend>1. Have you had a migraine today?</legend>
+        <div class="options">
+          <label><input type="radio" name="migraine" value="yes" /> Yes</label>
+          <label><input type="radio" name="migraine" value="no" /> No</label>
+        </div>
+      </fieldset>
+
+      <!-- Q2 -->
+      <fieldset>
+        <legend>2. On a scale of 1–10, how bad was the pain?</legend>
+        <label style="gap:0.75rem">
+          <input
+            type="range"
+            name="pain_scale"
+            min="1"
+            max="10"
+            value="5"
+            oninput="painOut.value = this.value"
+          />
+          <output id="painOut" class="slider-output">5</output>
+        </label>
+      </fieldset>
+
+      <!-- Q3 -->
+      <fieldset>
+        <legend>3. Did you take your medication?</legend>
+        <div class="options">
+          <label><input type="radio" name="med_taken" value="yes" /> Yes</label>
+          <label><input type="radio" name="med_taken" value="no" /> No</label>
+        </div>
+      </fieldset>
+
+      <!-- Q4 -->
+      <fieldset>
+        <legend>4. How many tablets did you take?</legend>
+        <input type="number" name="tablet_count" min="0" max="10" inputmode="numeric" />
+      </fieldset>
+
+      <!-- Q5 -->
+      <fieldset>
+        <legend>5. What time did you take the medication?</legend>
+        <input type="time" name="med_time" />
+      </fieldset>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
